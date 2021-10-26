@@ -1,4 +1,6 @@
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@page import="java.text.SimpleDateFormat"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page import="it.prova.gestionepersone.model.Persona"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -29,28 +31,27 @@
 					    <div class='card-header'>
 					        <h5>Visualizza dettaglio</h5>
 					    </div>
-					     <% Persona personaInPagina = (Persona)request.getAttribute("visualizza_persona_attr"); %>
-					    
 					
 					    <div class='card-body'>
 					    	<dl class="row">
 							  <dt class="col-sm-3 text-right">Nome</dt>
-							  <dd class="col-sm-9"><%=personaInPagina.getNome() %></dd>
+							  <dd class="col-sm-9">${visualizza_persona_attr.nome}</dd>
 					    	</dl>
 					    	
 					    	<dl class="row">
 							  <dt class="col-sm-3 text-right">Cognome:</dt>
-							  <dd class="col-sm-9"><%=personaInPagina.getCognome() %></dd>
+							  <dd class="col-sm-9">${visualizza_persona_attr.cognome}</dd>
 					    	</dl>
 					    	
 					    	<dl class="row">
 							  <dt class="col-sm-3 text-right">Altezza:</dt>
-							  <dd class="col-sm-9"><%=personaInPagina.getAltezza() %></dd>
+							  <dd class="col-sm-9">${visualizza_persona_attr.altezza}</dd>
 					    	</dl>
 					    	
 					    	<dl class="row">
 							  <dt class="col-sm-3 text-right">Data di nascita:</dt>
-							  <dd class="col-sm-9"><%=personaInPagina.getDataNascita()!=null? new SimpleDateFormat("dd/MM/yyyy").format(personaInPagina.getDataNascita()):"N.D."  %></dd>
+							  <fmt:formatDate value="${visualizza_persona_attr.dataNascita}" pattern="dd/MM/yyyy" var="dataNascita"/>
+							  <dd class="col-sm-9">${dataNascita}</dd>
 					    	</dl>
 					    	
 					    </div>

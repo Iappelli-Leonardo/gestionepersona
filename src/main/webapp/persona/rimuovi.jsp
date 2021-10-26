@@ -1,3 +1,5 @@
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page import="it.prova.gestionepersone.model.Persona"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -29,40 +31,35 @@
 					    <div class='card-header'>
 					        <h5>Stai per eliminare: </h5>
 					    </div>
-					     <% Persona personaInPagina = (Persona)request.getAttribute("delete_persona_attr"); %>
-					    
 					
 					    <div class='card-body'>
 					    	<dl class="row">
 							  <dt class="col-sm-3 text-right">Nome</dt>
-							  <dd class="col-sm-9"><%=personaInPagina.getNome() %></dd>
+							  <dd class="col-sm-9">${delete_persona_attr.nome}</dd>
 					    	</dl>
 					    	
 					    	<dl class="row">
 							  <dt class="col-sm-3 text-right">Cognome:</dt>
-							  <dd class="col-sm-9"><%=personaInPagina.getCognome() %></dd>
+							  <dd class="col-sm-9">${delete_persona_attr.cognome}</dd>
 					    	</dl>
 					    	
 					    	<dl class="row">
 							  <dt class="col-sm-3 text-right">Altezza:</dt>
-							  <dd class="col-sm-9"><%=personaInPagina.getAltezza() %></dd>
+							  <dd class="col-sm-9">${delete_persona_attr.altezza}</dd>
 					    	</dl>
 					    	
 					    	<dl class="row">
 							  <dt class="col-sm-3 text-right">Data di nascita:</dt>
-							  <dd class="col-sm-9"><%=personaInPagina.getDataNascita()!=null? new SimpleDateFormat("dd/MM/yyyy").format(personaInPagina.getDataNascita()):"N.D."  %></dd>
+								<fmt:formatDate value="${delete_persona_attr.dataNascita}" pattern="dd/MM/yyyy" var="dataNascita"/>
+							  <dd class="col-sm-9">${dataNascita}</dd>
 					    	</dl>
 					    	
 					    </div>
 					    
 					    
-					    
-					    
-					    
-					    
 					    <div class='card-footer'>
 					     <form method="post" action="ExecuteRimuoviServlet" class="row g-3" novalidate="novalidate">		
-					           <input type="hidden" name="idDaRimuovere" value="<%=personaInPagina.getId() %>">
+					           <input type="hidden" name="idDaRimuovere" value="${delete_persona_attr.id}">
 					           	<input type="submit" value="Delete" class='btn btn-outline-danger' style='width:100px'>&nbsp
 					        <a href="ListPersoneServlet" class='btn btn-outline-secondary' style='width:80px'>
 					            <i class='fa fa-chevron-left'></i> Back

@@ -1,3 +1,4 @@
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="it.prova.gestionepersone.model.Persona"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -48,30 +49,30 @@
 		
 							<form method="post" action="ExecuteInsertServlet" class="row g-3" novalidate="novalidate">
 							
-								<% Persona personaInPagina = (Persona)request.getAttribute("insert_persona_attr"); %>
 							
 								<div class="col-md-6">
 									<label for="nome" class="form-label">Nome <span class="text-danger">*</span></label>
 									<input type="text" name="nome" id="nome" class="form-control" placeholder="Inserire il nome"  
-										value="<%=personaInPagina.getNome()!=null?personaInPagina.getNome():"" %>" required>
+										value="${insert_persona_attr.nome}" required>
 								</div>
+							
 								
 								<div class="col-md-6">
 									<label for="cognome" class="form-label">Cognome <span class="text-danger">*</span></label>
 									<input type="text" name="cognome" id="cognome" class="form-control" placeholder="Inserire il cognome"  
-										value="<%=personaInPagina.getCognome()!=null?personaInPagina.getCognome():"" %>" required>
+										value="${insert_persona_attr.cognome}" required>
 								</div>
 							
 								<div class="col-md-6">
 									<label for="altezza" class="form-label">Altezza <span class="text-danger">*</span></label>
 									<input type="number" class="form-control" name="altezza" id="altezza" placeholder="Inserire l'altezza" 
-									value="<%=personaInPagina.getAltezza()!=null?personaInPagina.getAltezza():"" %>" required>
+									value="${insert_persona_attr.altezza}" required>
 								</div>
 								
 								<div class="col-md-3">
 									<label for="dataNascita" class="form-label">Data di nascita<span class="text-danger">*</span></label>
 									<input class="form-control"  name="dataNascita" id="dataNascita" type="date" placeholder="dd/MM/yy" title="formato : gg/mm/aaaa" 
-										value="<%=personaInPagina.getDataNascita()!=null? new SimpleDateFormat("yyyy-MM-dd").format(personaInPagina.getDataNascita()):""  %>" required/>
+										value="${insert_persona_attr.dataNascita}" required/>
 								</div>
 								
 								
